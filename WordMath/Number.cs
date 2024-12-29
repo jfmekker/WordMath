@@ -1,10 +1,24 @@
 ﻿namespace WordMath
 {
+    /// <summary>
+    /// Represents an integer number as a value or in words.
+    /// </summary>
     public class Number
     {
+        /// <summary>
+        /// The value of this number as <see cref="long"/>.
+        /// </summary>
         public long Value { get; }
+
+        /// <summary>
+        /// The words (in order) that represent this number.
+        /// </summary>
         public string[] Words { get; }
 
+        /// <summary>
+        /// Create a number from a value.
+        /// </summary>
+        /// <param name="value"></param>
         public Number( long value )
         {
             this.Value = value;
@@ -60,10 +74,20 @@
             this.Words = nodes.Select( n => n.Word ).ToArray( );
         }
 
+        /// <summary>
+        /// Create a number from a string of words.
+        /// </summary>
+        /// <param name="words"></param>
         public Number( string words ) :
             this( words.Split( ' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries ) )
         { }
 
+        /// <summary>
+        /// Create a number from an array of words.
+        /// </summary>
+        /// <param name="words"></param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
         public Number( string[] words )
         {
             if ( words.Length == 0 )
@@ -210,6 +234,10 @@
             this.Value = currTotalVal.Value;
         }
 
+        /// <summary>
+        /// Get a string that represents the number by joining <see cref="Words"/> with spaces.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString( ) => string.Join( ' ', this.Words );
     }
 
